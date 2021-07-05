@@ -1,0 +1,55 @@
+name: flutter_task_new
+description: A new Flutter project.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - images/
+    - images/drawable-xxxhdpi/bg.png
+    - assets/lottiefile.json
+    - assets/langs/en-US.json
+    - assets/langs/ar-AE.json
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/Poppins-Regular.ttf
+        - asset: assets/Poppins-Light.ttf
+        - asset: assets/Poppins-SemiBold.ttf
+        - asset: assets/Poppins-Medium.ttf
+          style: italic
+
+dependencies:
+  easy_localization: ^3.0.0
+  encrypt: ^5.0.0
+  flutter_contact: ^0.8.1+2
+  flutter_secure_storage: ^4.2.0
+  flutter_string_encryption: ^0.3.1
+  flutter_tts: ^3.1.0
+  font_awesome_flutter: ^9.1.0
+  google_maps_flutter: ^2.0.6
+  http: ^0.13.3
+  image_picker: ^0.8.0
+  local_auth: ^1.1.6
+  location: ^4.2.3
+  lottie: ^1.0.1
+  path_provider: ^2.0.2
+  permission_handler: ^8.0.1
+  screenshot: ^1.2.1
+  search_page: ^2.0.0+1
+  share: ^2.0.4
+  shared_preferences: ^2.0.6
+  social_share: ^2.1.1
+  url_launcher: ^6.0.6
+  walkthrough: ^0.0.3
+  youtube_player_flutter: ^8.0.0
