@@ -1,7 +1,10 @@
+import 'package:flutter_task_new/screens/email_call_screen/email_call_screen.dart';
+import 'package:social_share/social_share.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_task_new/screens/instalike_stories_screen/data.dart';
-import 'package:flutter_task_new/screens/instalike_stories_screen/storydata.dart';
-import 'package:flutter_task_new/screens/youtube_player_screen/youtube_player_screen.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:screenshot/screenshot.dart';
+import 'dart:io';
 
 class InstaLike extends StatefulWidget {
   @override
@@ -9,24 +12,12 @@ class InstaLike extends StatefulWidget {
 }
 
 class _InstaLikeState extends State<InstaLike> {
-  List<StoryData> stories = [
-    new StoryData(
-        'SeemaSenthil',
-        'https://www.androidhits.com/wp-content/uploads/2016/05/instagram-new-logo.jpg',
-        'https://www.hdwallpaper.nu/wp-content/uploads/2015/06/1843513.jpg'),
-    new StoryData(
-        'SeemaSuja',
-        'http://getdrawings.com/free-icon/funny-profile-icons-62.png',
-        'http://www.decorationlove.com/wp-content/uploads/2016/10/Smalll-Orange-Chirstmas-Design.jpg'),
-    new StoryData(
-        'Seema',
-        'https://www.seekpng.com/png/detail/202-2024729_facebook-profile-icon-png-facebook-profile-logo-transparent.png',
-        'https://www.thewowdecor.com/wp-content/uploads/2017/09/Chalkboard-Christmas-Wreath.jpg'),
-    new StoryData(
-        'MaheSeema',
-        'https://images-na.ssl-images-amazon.com/images/I/91c5vXSKGOL.png',
-        'https://ofriendly.com/wp-content/uploads/2017/06/paper-flowers/16-paper-flower-diy-ideas-tutorials.jpg'),
-  ];
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  ScreenshotController screenshotController = ScreenshotController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,35 +26,67 @@ class _InstaLikeState extends State<InstaLike> {
           'Instagram',
           style: TextStyle(
             fontFamily: 'Poppins',
-            color: Colors.black,
           ),
         ),
-        centerTitle: true,
         actions: [
           IconButton(
-              icon: Icon(Icons.arrow_forward_ios_outlined),
-              onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => MyPage()));
-              }),
-        ],
-      ),
-      body: Column(
-        children: [
-          Container(
-            width: double.infinity,
-            height: 150,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                storyButton(stories[0], context),
-                storyButton(stories[1], context),
-                storyButton(stories[2], context),
-                storyButton(stories[3], context),
-              ],
-            ),
+            icon: Icon(Icons.arrow_forward_ios_outlined),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => EmailCall()));
+            },
           )
         ],
+      ),
+      body: Screenshot(
+        controller: screenshotController,
+        child: Container(
+          color: Colors.white,
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              // ignore: deprecated_member_use
+              RaisedButton(
+                onPressed: () async {
+                  PickedFile file =
+                      await ImagePicker().getImage(source: ImageSource.gallery);
+                  SocialShare.shareInstagramStory(
+                    file.path,
+                    backgroundTopColor: "#ffffff",
+                    backgroundBottomColor: "#000000",
+                    attributionURL: "https://www.instagram.com/",
+                  ).then((data) {
+                    print(data);
+                  });
+                },
+                child: Text("Share On Instagram Story"),
+              ),
+              // ignore: deprecated_member_use
+              RaisedButton(
+                onPressed: () {
+                  screenshotController
+                      .capture(delay: Duration(milliseconds: 20))
+                      .then((image) async {
+                    Directory tempDir = await getTemporaryDirectory();
+                    String filepath = '${tempDir.path}/insta.jpg';
+                    File(filepath).writeAsBytes(image);
+                    SocialShare.shareInstagramStory(
+                      filepath,
+                      backgroundTopColor: '#ffffff',
+                      backgroundBottomColor: '#000000',
+                      attributionURL: "https://www.instagram.com/",
+                    ).then((data) {
+                      print(data);
+                    });
+                  });
+                },
+                child: Text('Share Insta Story'),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
