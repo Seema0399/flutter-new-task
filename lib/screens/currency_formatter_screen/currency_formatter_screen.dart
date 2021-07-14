@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_task_new/screens/email_call_screen/email_call_screen.dart';
+import 'package:flutter_task_new/screens/youtube_player_screen/youtube_player_screen.dart';
 
 import 'package:flutter_task_new/utils/font.dart';
 import 'package:flutter_task_new/utils/string_resources.dart';
@@ -43,8 +43,8 @@ class _CurrencyFormatterState extends State<CurrencyFormatter> {
               icon: Icon(Icons.arrow_forward_ios_outlined),
               color: ColorResources.colorFFFFFF,
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => EmailCall()));
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => MyPage()));
               },
             )
           ],
