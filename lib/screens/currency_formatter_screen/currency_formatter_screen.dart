@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-
-import 'package:flutter_task_new/screens/instalike_stories_screen/instalike_stories_screen.dart';
+import 'package:flutter_task_new/screens/email_call_screen/email_call_screen.dart';
 
 import 'package:flutter_task_new/utils/font.dart';
 import 'package:flutter_task_new/utils/string_resources.dart';
@@ -45,7 +44,7 @@ class _CurrencyFormatterState extends State<CurrencyFormatter> {
               color: ColorResources.colorFFFFFF,
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => InstaLike()));
+                    MaterialPageRoute(builder: (context) => EmailCall()));
               },
             )
           ],

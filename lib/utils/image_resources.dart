@@ -10,4 +10,5 @@ class ImageResource {
   static const String search = 'images/contacts.png';
   static const String bg = 'images/drawable-xxxhdpi/bg.png';
   static const String fingerprint = 'images/fingerprint.png';
+  static const String instagram = 'images/insta.jpg';
 }
